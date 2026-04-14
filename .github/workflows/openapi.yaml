@@ -13,16 +13,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
+
 
       - name: Install OpenAPI tools
         run: npm install -g @stoplight/spectral-cli swagger-cli
 
       - name: Lint OpenAPI
-        run: spectral lint auth-service/api/auth.v1.yaml
+        run: spectral lint --ruleset "spectral:oas" auth-service/api/auth.v1.yaml
 
       - name: Validate OpenAPI
         run: swagger-cli validate auth-service/api/auth.v1.yaml
