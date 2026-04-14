@@ -23,8 +23,7 @@ jobs:
         run: npm install -g @stoplight/spectral-cli swagger-cli
 
       - name: Lint OpenAPI
-        run: spectral lint auth-service/api/auth.v1.yaml
-
+        run: spectral lint -r .spectral.yaml auth-service/api/auth.v1.yaml
 
       - name: Validate OpenAPI
         run: swagger-cli validate auth-service/api/auth.v1.yaml
